@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const WoundDetection = () => {
+    
     const [file, setFile] = useState(null);
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -19,9 +20,10 @@ const WoundDetection = () => {
         setLoading(true);
         const formData = new FormData();
         formData.append("image", file);
-
         try {
+            
             const response = await axios.post("/api/wound-detection", formData);
+            console.log(response.data.data);
             setResult(response.data.data);
         } catch (error) {
             console.error("Error:", error);
